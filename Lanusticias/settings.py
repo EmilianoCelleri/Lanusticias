@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Chat',
     'ckeditor',
     'Registro',
+    'Perfil',
 
 ]
 

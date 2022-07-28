@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from Blog.models import Blog
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -12,6 +13,10 @@ def blogs(request):
 
 def blog(request, id):
 
-    blog=Blog.objects.get(id=id)
+    blog=get_object_or_404(Blog, id=id)
 
     return render (request, 'blog.html', {'blog':blog})
+
+class Error404(TemplateView):
+    template_name = '404.html'
+
