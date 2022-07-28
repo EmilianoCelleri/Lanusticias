@@ -4,6 +4,8 @@
 
 <h1>BLOG</h1>
 
+{% for blog in blogs %}
+
 
 <section id="scroll">
     <div class="container px-5">
@@ -15,11 +17,12 @@
                 <div class="p-5">
                     <h2 class="display-4">{{blog.titulo}}</h2>
                     <p>{{blog.contenido}}</p>
+                    <h4><a href="blog/{{blog.id}}">Ver mas...</a></h4>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-
+{% endfor %}
 {% endblock %}

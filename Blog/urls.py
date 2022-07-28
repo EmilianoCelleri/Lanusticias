@@ -7,7 +7,8 @@ urlpatterns = [
    
 
 
-    path('blog/', views.blog, name='blog'),
+    path('blog/<id>', views.blog, name='blog'),
+    path('blogs', views.blogs, name='blogs'),
 
 
 ]
