@@ -2,27 +2,24 @@
 
 {% block contenido_que_cambia %}
 
-<h1>BLOG</h1>
-
-{% for blog in blogs %}
+<h1>Mi Perfil {{user.username}}</h1>
 
 
 <section id="scroll">
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="img-fluid rounded-circle" src="{{blog.imagen.url}}" alt="..." /></div>
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{{imagen}}" alt="..." /></div>
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
-                    <h2 class="display-4">{{blog.titulo}}</h2>
-                    <p>{{blog.contenido|safe}}</p>
-                    <h4><a href="blog/{{blog.id}}">Ver mas...</a></h4>
+                    <h2 class="display-4">{{nombre}}</h2>
+                    <p>{{apellido}}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-{% endfor %}
+
 {% endblock %}
