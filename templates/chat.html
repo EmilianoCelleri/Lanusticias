@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block contenido_que_cambia %}
+
+<h1>Chat</h1>
+
+{% for mensaje in mensajes %}
+
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <p>{{mensaje.cuerpo}}</p>
+                    
+                    <h4><a href="#">Ver mas...</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endfor %}
+{% endblock %}

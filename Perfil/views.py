@@ -42,7 +42,8 @@ def agregar_avatar(request):
     if request.method == 'POST':
         formulario=AvatarForm(request.POST, request.FILES)
         if formulario.is_valid():
-            avatarViejo=Avatar.objects.get(user=request.user)
+            if request.user.id.imagen.url is not None:
+                avatarViejo=Avatar.objects.get(user=request.user)
             if(avatarViejo.imagen):
                 avatarViejo.delete()
             avatar=Avatar(user=request.user,imagen=formulario.cleaned_data['imagen'])

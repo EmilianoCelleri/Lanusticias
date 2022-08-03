@@ -29,6 +29,7 @@ urlpatterns = [
     path('', include('Login.urls')),
     path('', include('Registro.urls')),
     path('', include('Perfil.urls')),
+    path('', include('Chat.urls')),
 
 
 ]
