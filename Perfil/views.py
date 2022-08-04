@@ -27,25 +27,28 @@ def editar_perfil(request):
         formulario=UserEditForm(instance=usuario)
     return render (request, "editar_perfil.html", {'formulario':formulario, 'usuario': usuario.username})
 
-
+@login_required
 def mostrar_perfil(request):
     
-    imagen=Avatar.objects.filter(user=request.user.id)[0].imagen.url
     usuario=request.user
+    
+    imagen=Avatar.objects.filter(user_id=request.user.id)[0].imagen.url
+    
 
 
 
     return render (request, "mostrar_perfil.html", {'imagen': imagen, 'usuario':usuario.username, 'nombre': usuario.first_name, 'apellido':usuario.last_name })
 
+@login_required
 def agregar_avatar(request):
 
     if request.method == 'POST':
         formulario=AvatarForm(request.POST, request.FILES)
         if formulario.is_valid():
-            if request.user.id.imagen.url is not None:
-                avatarViejo=Avatar.objects.get(user=request.user)
-            if(avatarViejo.imagen):
-                avatarViejo.delete()
+            
+            avatar_viejo=Avatar.objects.filter(user_id=request.user.id)
+            if(avatar_viejo):
+                avatar_viejo.delete()
             avatar=Avatar(user=request.user,imagen=formulario.cleaned_data['imagen'])
             avatar.save()
             return render (request, "index.html", {'usuario':request.user, 'mensaje': f"AVATAR AGREGADO EXITOSAMENTE"})
@@ -53,9 +56,6 @@ def agregar_avatar(request):
         formulario = AvatarForm()
         return render (request, "agregar_avatar.html", {'formulario':formulario, 'usuario': request.user})
 
-
-def modificar_perfil(request):
-    pass
 
 
 @login_required
