@@ -8,13 +8,14 @@
 
 <h1>{{ mensaje }}</h1>
 
-<form action="{% url 'login' %}" method="POST">{% csrf_token %}
+<div style="text-align:center ;"><form action="{% url 'login' %}" method="POST">{% csrf_token %}
 
     {{ form.as_p }}
 
     <button type="submit">Iniciar Sesion</button>
 
 
-</form>
 
+</form>
+</div>
 {% endblock %}

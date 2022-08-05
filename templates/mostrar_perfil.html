@@ -2,19 +2,27 @@
 
 {% block contenido_que_cambia %}
 
-<h1>Mi Perfil {{user.username}}</h1>
+<h2 class="display-4" style="text-align: center;">Mi perfil: {{user.username}} </h2>
 
 
 <section id="scroll">
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="img-fluid rounded-circle" src="{{imagen}}" alt="..." /></div>
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{{imagen}}" alt="..." style="width:400px" /></div>
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
                     <h2 class="display-4">{{nombre}}</h2>
-                    <p>{{apellido}}</p>
+                    <div></div>
+                    <h2 class="display-4">{{apellido}}</h2>
+                    <div></div>
+                    <p><h2><a href="{{web}}">Mi web</a></p></h2>{{web}}
+                    <div></div>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'editar_perfil' %}">Editar mi perfil</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'editar_informacion' %}">Editar mi informacion</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'agregar_avatar' %}">Agregar/cambiar avatar</a>
+
                 </div>
             </div>
         </div>
