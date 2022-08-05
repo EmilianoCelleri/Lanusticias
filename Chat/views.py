@@ -44,10 +44,21 @@ class MandarMensaje(CreateView, LoginRequiredMixin):
     fields = ['cuerpo','receptor']
 
     def form_valid(self, form):
-        """Forzar el usuario a Request.user"""
+        """Forzar el usuario emisor a Request.user"""
         self.mensaje = form.save(commit=False)
         self.mensaje.emisor_id = self.request.user.id
         self.mensaje.save()
 
         return super(MandarMensaje, self).form_valid(form)
     
+
+
+def mensajes(request,id):
+
+    mensaje=Mensaje.objects.get(id=id)
+    emisor_id=mensaje.emisor.id
+    cuerpo=mensaje.cuerpo
+    hora=mensaje.enviado
+    nombre=mensaje.emisor
+    return render (request, 'mensajes.html', {'id': id, 'emisor_id':emisor_id, 'cuerpo': cuerpo, 'hora':hora, 'nombre': nombre})
+

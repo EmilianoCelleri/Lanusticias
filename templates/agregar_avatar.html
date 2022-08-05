@@ -4,13 +4,13 @@
 {% block contenido_que_cambia %}
    
 
-    <h1>Agregar Avatar {{ usuario }}</h1>
+    <h1 style='text-align:center'>Agregar Avatar de usuario: {{ usuario }}</h1>
        
    
     
    <form action="{% url 'agregar_avatar' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
     
-    <table>
+    <table style='text-align:center'>
         {{formulario.as_table}}
     </table>
     

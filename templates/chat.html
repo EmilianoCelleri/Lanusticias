@@ -2,7 +2,7 @@
 
 {% block contenido_que_cambia %}
 
-<h1>Chat</h1>
+<h1 style='text-align:center'>Todos tus chats</h1>
 
 {% for mensaje in mensajes %}
 
@@ -19,7 +19,7 @@
                     <p>{{mensaje.cuerpo}}</p>
                     <h5>El dia: {{mensaje.enviado}}</h5>
                     
-                    <h4><a href="#">Ir al chat</a></h4>
+                    <h4><a href="mensajes/{{mensaje.id}}">Ir al chat</a></h4>
                 </div>
             </div>
         </div>

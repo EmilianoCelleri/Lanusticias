@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block contenido_que_cambia %}
+
+<h1 style='text-align:center'>Mensaje de {{nombre}}</h1>
+
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h1 class="display-4">{{nombre}}</h1>
+                    <h2 class="display-4">{{cuerpo}}</h2>
+                    <h4 class="display-4">{{hora}}</h4>
+                    
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'chat' %}">Volver al Chat</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'mandar_mensaje' %}">Responder</a>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
