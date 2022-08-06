@@ -1,0 +1,31 @@
+{% extends 'paneladmin.html' %}
+
+{% block contenido_que_cambia %}
+{% if request.user.is_superuser %}
+<h1 style='text-align:center'>BLOG</h1>
+
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{{blog.imagen.url}}" alt="..." style="width:400px ;"/></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">{{blog.titulo}}</h2>
+                    <p>{{blog.contenido|safe}}</p>
+                    <h2 class="display-4">{{blog.autor}}</h2>
+                    <h2 class="display-4">{{blog.creado}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<h1 class="masthead-heading mb-0">No tenes autorizacion para ver esta pagina</h1>
+{% endif %}
+
+{% endblock %}
+
+

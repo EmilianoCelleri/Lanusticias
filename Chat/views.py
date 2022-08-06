@@ -52,7 +52,7 @@ class MandarMensaje(CreateView, LoginRequiredMixin):
         return super(MandarMensaje, self).form_valid(form)
     
 
-
+@login_required
 def mensajes(request,id):
 
     mensaje=Mensaje.objects.get(id=id)

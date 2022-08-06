@@ -1,0 +1,21 @@
+{% extends "paneladmin.html" %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+{% if request.user.is_superuser %}
+<form method ="post" style="text-align: center ;"> {% csrf_token %}
+    <h2 class="display-4">Estas seguro que queres borrar la entrada {{object}}?</h2>
+    <p>La decision es irreversible</p>
+
+    <input type="submit" value = "SI">
+    {% else %}
+    <h1 class="masthead-heading mb-0">No tenes autorizacion para ver esta pagina</h1>
+    {% endif %}
+</form>
+
+
+
+{% endblock %}
+
+

@@ -16,7 +16,7 @@ def login_request(request):
             usuario=authenticate(username=usu, password=clave)
             if usuario is not None:
                 login(request, usuario)
-                return render (request, "index.html", {'form':form, 'mensaje': f"Bienvenido {usuario}"})
+                return render (request, "index.html", {'form':form, 'mensaje': f"Bienvenido/a {usuario}"})
             else:
                 return render (request, "login.html", {'form':form, 'mensaje': f"Usuario o clave incorrectos"})
         else:

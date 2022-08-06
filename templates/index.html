@@ -19,6 +19,7 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
+        
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
             <div class="container px-5">
                 <a class="navbar-brand" href="#page-top">Ir Arriba</a>
@@ -45,7 +46,7 @@
             </div>
         </nav>
         <!-- Header-->
-        
+        {% block paneladmin %}
         <header class="masthead text-center text-white">
             <div class="masthead-content">
                 <div class="container px-5">
@@ -58,6 +59,10 @@
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'mostrar_perfil' %}">Perfil</a>
                     {% endif %}
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'about' %}">Quienes somos</a>
+                    <div></div>
+                    {% if request.user.is_superuser %}
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'paneladmin' %}">Panel Admin</a>
+                    {% endif %}
                     
                 </div>
             </div>
@@ -66,6 +71,7 @@
             <div class="bg-circle-3 bg-circle"></div>
             <div class="bg-circle-4 bg-circle"></div>
         </header>
+        {% endblock %}
         {% block contenido_que_cambia %}
         <h2 class="display-4" style="text-align: center;">{{mensaje}} </h2>
         <div></div>
@@ -81,7 +87,9 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
                             <h2 class="display-4">{{blog.titulo}}</h2>
-                            <p>{{blog.contenido|safe}}</p>
+                            <p>{{blog.subtitulo}}</p>
+                            <p>{{blog.autor}}</p>
+                            <h4><a href="blog/{{blog.id}}">Ver mas...</a></h4>
                         </div>
                     </div>
                 </div>

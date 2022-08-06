@@ -1,0 +1,23 @@
+{% extends "paneladmin.html" %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+{% if request.user.is_superuser %}
+<form method="post" enctype="multipart/form-data" style="text-align: center ;">{% csrf_token %}
+    {{form.media}}
+    {{form.as_p}}
+    <input type ="submit" value="Enviar">
+    
+    {% else %}
+    <h1 class="masthead-heading mb-0">No tenes autorizacion para ver esta pagina</h1>
+    {% endif %}
+
+
+</form>
+
+
+
+{% endblock %}
+
+

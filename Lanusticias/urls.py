@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('Registro.urls')),
     path('', include('Perfil.urls')),
     path('', include('Chat.urls')),
+    path('', include('PanelAdmin.urls')),
 
 
 ]

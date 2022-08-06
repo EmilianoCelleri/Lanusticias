@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'Registro',
     'Perfil',
+    'PanelAdmin',
 
 ]
 
