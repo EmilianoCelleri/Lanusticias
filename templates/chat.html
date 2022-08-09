@@ -3,7 +3,8 @@
 {% block contenido_que_cambia %}
 
 <h2 class="display-4" style="text-align: center;">Todos tus chats </h2>
-
+{% if mensajes %}
+<h2 class="display-4" style="text-align: center;">Mensajes Recibidos: </h2>
 {% for mensaje in mensajes %}
 
 
@@ -25,7 +26,37 @@
         </div>
     </div>
 </section>
-
 {% endfor %}
-<a style="text-align:center;" class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'mandar_mensaje' %}">Enviar un mensaje</a>
+{% else %}
+<h2 class="display-4" style="text-align: center;">Todavia no recibiste mensajes </h2>
+{% endif %}
+
+{% if mensajes_enviados %}
+<h2 class="display-4" style="text-align: center;">Mensajes Enviados: </h2>
+{% for mensaje in mensajes_enviados %}
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h3>Mensaje para: {{mensaje.receptor}}</h3>
+                    <p>{{mensaje.cuerpo}}</p>
+                    <h5>El dia: {{mensaje.enviado}}</h5>
+                    
+                    <h4><a href="mensajes/{{mensaje.id}}">Ir al chat</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+{% else %}
+<h2 class="display-4" style="text-align: center;">Todavia no enviaste mensajes </h2>
+{% endif %}
+
+
+<div style="text-align:center ;"><a  class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'mandar_mensaje' %}" &amp;>Enviar un mensaje</a></div>
 {% endblock %}

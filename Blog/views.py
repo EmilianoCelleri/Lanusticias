@@ -20,3 +20,13 @@ def blog(request, id):
 class Error404(TemplateView):
     template_name = '404.html'
 
+def busqueda_blog(request):
+    return render (request, "busqueda_blog.html")
+
+def buscar(request):
+    if request.GET["titulo"]:
+        tit=request.GET["titulo"]
+        blogs=Blog.objects.filter(titulo__icontains=tit)
+        return render (request, "resultados_busqueda.html", {"blogs":blogs})
+    else:
+        return render(request, "busqueda_blog.html", {"error": "No se ingreso ningun nombre" })

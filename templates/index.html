@@ -54,6 +54,7 @@
                     <h2 class="masthead-subheading mb-0">Blog de noticias de Lanus</h2>
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'inicio' %}">Inicio</a>
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'blogs' %}">Blog</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'busqueda_blog' %}">Buscar</a>
                     {% if request.user.is_authenticated %}
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'chat' %}">Chat</a>
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'mostrar_perfil' %}">Perfil</a>
@@ -88,7 +89,7 @@
                         <div class="p-5">
                             <h2 class="display-4">{{blog.titulo}}</h2>
                             <p>{{blog.subtitulo}}</p>
-                            <p>{{blog.autor}}</p>
+                            <p>Autor :{{blog.autor}}</p>
                             <h4><a href="blog/{{blog.id}}">Ver mas...</a></h4>
                         </div>
                     </div>

@@ -2,28 +2,56 @@
 
 {% block contenido_que_cambia %}
 
-<h1 style='text-align:center'>Mensaje de {{nombre}}</h1>
-
-
+<h1 style='text-align:center'>Chat con: {{nombre}}</h1>
+<h1 style='text-align:center'>Mensajes enviados</h1>
+{% if mensajes_enviados %}
+{% for enviado in mensajes_enviados %}
 <section id="scroll">
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6 order-lg-2">
+                
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
-                    <h1 class="display-4">{{nombre}}</h1>
-                    <h2 class="display-4">{{cuerpo}}</h2>
-                    <h4 class="display-4">{{hora}}</h4>
+                    <p>{{enviado.cuerpo}}</p>
+                    <h5>El dia: {{enviado.enviado}}</h5>
                     
-                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'chat' %}">Volver al Chat</a>
-                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'mandar_mensaje' %}">Responder</a>
-                    <p></p>
+                    
                 </div>
             </div>
         </div>
     </div>
 </section>
+{% endfor %}
+{% else %}
+<h3 style='text-align:center'>Todavia no le enviaste mensajes a: {{nombre}}</h1>
+{% endif %}
 
+<h1 style='text-align:center'>Mensajes recibidos</h1>
+{% if mensajes_recibidos %}
+{% for recibido in mensajes_recibidos %}
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <p>{{recibido.cuerpo}}</p>
+                    <h5>El dia: {{recibido.enviado}}</h5>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+{% else %}
+<h3 style='text-align:center'>Todavia no recibiste mensajes de: {{nombre}}</h1>
+{% endif %}
 
+<div style="text-align:center ;"><a  class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'mandar_mensaje' %}" &amp;>Enviar un mensaje</a></div>
 {% endblock %}

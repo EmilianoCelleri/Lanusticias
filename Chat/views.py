@@ -13,29 +13,8 @@ from django.urls import reverse_lazy
 def chat(request):
 
     mensajes=Mensaje.objects.filter(receptor_id=request.user.id)
-
-    return render (request, 'chat.html', {'mensajes':mensajes})
-
-
-
-'''@login_required
-def mandar_mensaje(request):
-    
-    if (request.method=="POST"):
-        form=MandarMensajeForm(request.POST)
-        
-        if form.is_valid():
-            info=form.cleaned_data
-            
-            cuerpo=info["cuerpo"]
-            receptor=info["receptor"]
-            mensaje=Mensaje(cuerpo=cuerpo, receptor=receptor, emisor=request.user)
-            mensaje.save()
-            return render (request, "chat.html")    
-    else:
-        form=MandarMensajeForm()
-    return render (request, "mandar_mensaje.html", {"formulario": form})'''
-
+    mensajes_enviados=Mensaje.objects.filter(emisor_id=request.user.id)
+    return render (request, 'chat.html', {'mensajes':mensajes,'mensajes_enviados':mensajes_enviados})
 
 class MandarMensaje(CreateView, LoginRequiredMixin):
     model = Mensaje
@@ -54,11 +33,30 @@ class MandarMensaje(CreateView, LoginRequiredMixin):
 
 @login_required
 def mensajes(request,id):
-
+    
     mensaje=Mensaje.objects.get(id=id)
-    emisor_id=mensaje.emisor.id
-    cuerpo=mensaje.cuerpo
-    hora=mensaje.enviado
-    nombre=mensaje.emisor
-    return render (request, 'mensajes.html', {'id': id, 'emisor_id':emisor_id, 'cuerpo': cuerpo, 'hora':hora, 'nombre': nombre})
+    '''Traigo un objeto, si el mensaje lo mande yo soy el emisor, si lo recibi soy el receptor'''
+    if mensaje.emisor == request.user:
+        yo=mensaje.emisor
+        otro=mensaje.receptor
+        nombre=mensaje.receptor
+    else:
+        yo=mensaje.receptor
+        otro=mensaje.emisor
+        nombre=mensaje.emisor
+    
+    
+    mensajes_enviados=Mensaje.objects.filter(receptor=otro).filter(emisor=yo)
+    mensajes_recibidos=Mensaje.objects.filter(receptor=yo).filter(emisor_id=otro)    
+    
+    print(mensaje)
+    print(mensaje.receptor)
+    print(mensaje.emisor)
+    print(mensajes_enviados)
+    print(mensajes_recibidos)
+    
+
+
+
+    return render (request, 'mensajes.html', {'mensaje': mensaje,'nombre': nombre, 'mensajes_enviados':mensajes_enviados, 'mensajes_recibidos': mensajes_recibidos})
 

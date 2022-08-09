@@ -31,16 +31,20 @@ def mostrar_perfil(request):
     
     usuario=request.user
     
-    imagen=Avatar.objects.filter(user_id=request.user.id)[0].imagen.url
-    informacion=Perfil.objects.get(user_id=request.user)
-    if(informacion):
-        user=Perfil.objects.get(user_id=request.user)
-        web=user.web
-        descripcion=user.descripcion
-    
+    imagen=Avatar.objects.filter(user_id=request.user.id)
+    informacion=Perfil.objects.filter(user_id=request.user)
+    if (imagen):
+        avatar=Avatar.objects.filter(user_id=request.user.id)[0].imagen.url
+        if(informacion):
+            user=Perfil.objects.get(user_id=request.user)
+            web=user.web
+            descripcion=user.descripcion
+            return render (request, "mostrar_perfil.html", {'avatar': avatar, 'usuario':usuario.username, 'nombre': usuario.first_name, 'apellido':usuario.last_name, 'web': web, 'descripcion': descripcion})
+        else:
+            return render (request, "mostrar_perfil.html", {'avatar': avatar, 'usuario':usuario.username, 'nombre': usuario.first_name, 'apellido':usuario.last_name})
+    else:
+         return render (request, "mostrar_perfil.html", {'usuario':usuario.username, 'nombre': usuario.first_name, 'apellido':usuario.last_name})   
 
-
-    return render (request, "mostrar_perfil.html", {'imagen': imagen, 'usuario':usuario.username, 'nombre': usuario.first_name, 'apellido':usuario.last_name, 'web': web, 'descripcion': descripcion})
 
 @login_required
 def agregar_avatar(request):
@@ -58,26 +62,6 @@ def agregar_avatar(request):
     else:
         formulario = AvatarForm()
         return render (request, "agregar_avatar.html", {'formulario':formulario, 'usuario': request.user})
-
-
-
-'''@login_required
-def editar_informacion(request):
-    usuario = request.user
-
-    if request.method == 'POST':
-        formulario = PerfilEditForm(request.POST, instance=usuario)
-        if formulario.is_valid():
-            informacion=formulario.cleaned_data
-            usuario.web = informacion['web']
-            usuario.descripcion = informacion['descripcion']                                 
-            usuario.save()
-            return render (request, "index.html", {'usuario':usuario, 'mensaje': f"PERFIL EDITADO EXITOSAMENTE"})
-
-    else:
-        formulario=PerfilEditForm(instance=usuario)
-    return render (request, "editar_informacion.html", {'formulario':formulario, 'usuario': usuario.username})'''
-    
 
 
 @login_required
