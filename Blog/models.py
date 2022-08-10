@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Blog(models.Model):
 
-    titulo = models.CharField(max_length=50)
+    titulo = models.CharField(max_length=150)
     subtitulo = models.CharField(max_length=50, null=True)
     contenido = RichTextField()
     autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Autor')

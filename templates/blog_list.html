@@ -14,8 +14,8 @@
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
-                    <h2 class="display-4">{{blog.titulo}}</h2>
-                    <h2 class="display-4">{{blog.subtitulo}}</h2>
+                    <h2 class="display-4" >{{blog.titulo}}</h2>
+                    <p>{{blog.subtitulo}}</p>
                     <a class="btn btn-primary btn-s rounded-pill mt-5" href="{% url 'blog_editar' blog.pk %}">Editar Blog</a>
                     <a class="btn btn-primary btn-s rounded-pill mt-5" href="{% url 'blog_detalle' blog.pk %}">Ver Blog</a>
                     <a class="btn btn-primary btn-s rounded-pill mt-5" href="{% url 'blog_borrar' blog.pk %}">Borrar Blog</a>

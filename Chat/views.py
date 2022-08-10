@@ -49,14 +49,5 @@ def mensajes(request,id):
     mensajes_enviados=Mensaje.objects.filter(receptor=otro).filter(emisor=yo)
     mensajes_recibidos=Mensaje.objects.filter(receptor=yo).filter(emisor_id=otro)    
     
-    print(mensaje)
-    print(mensaje.receptor)
-    print(mensaje.emisor)
-    print(mensajes_enviados)
-    print(mensajes_recibidos)
-    
-
-
-
     return render (request, 'mensajes.html', {'mensaje': mensaje,'nombre': nombre, 'mensajes_enviados':mensajes_enviados, 'mensajes_recibidos': mensajes_recibidos})
 
